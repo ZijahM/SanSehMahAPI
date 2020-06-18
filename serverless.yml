@@ -1,0 +1,42 @@
+service: myservice
+
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+
+functions:
+  get-teams:
+    handler: get-teams/handler.hello
+    events:
+         - http:
+             path: teams
+             method: get
+  get-notes:
+    handler: get-notes/handler.hello
+    events:
+         - http:
+             path: notes
+             method: get
+  get-teams-by-id:
+      handler: get-teams-by-id/handler.hello
+      events:
+           - http:
+               path: teams/{id}
+               method: get
+  add-team:
+        handler: add-team/handler.hello
+        events:
+             - http:
+                 path: teams
+                 method: post
+  add-note:
+        handler: add-note/handler.hello
+        events:
+             - http:
+                 path: notes
+                 method: post
+
+plugins:
+  - serverless-offline
